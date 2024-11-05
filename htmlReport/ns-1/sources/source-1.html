@@ -1,0 +1,169 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > KebabUtil</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">homework1</a>
+</div>
+
+<h1>Coverage Summary for Class: KebabUtil (homework1)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">KebabUtil</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (21/21)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package homework1;
+&nbsp;
+<b class="fc">&nbsp;public class KebabUtil {</b>
+&nbsp;
+&nbsp;    public String convertToKebabCase(String input, boolean toLowerCase, char[] delimiters) {
+&nbsp;        // Controllo per input nullo
+<b class="fc">&nbsp;        if (input == null) {</b>
+<b class="fc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // Rimuove gli spazi all&#39;inizio e alla fine dell&#39;input
+<b class="fc">&nbsp;        input = input.trim();</b>
+&nbsp;
+&nbsp;        // Se non ci sono delimitatori specificati, usa lo spazio come default
+<b class="fc">&nbsp;        if (delimiters == null || delimiters.length == 0) {</b>
+<b class="fc">&nbsp;            delimiters = new char[] {&#39; &#39;};</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // Escape special regex characters in delimiters
+<b class="fc">&nbsp;        StringBuilder escapedDelimiters = new StringBuilder();</b>
+<b class="fc">&nbsp;        for (char delimiter : delimiters) {</b>
+<b class="fc">&nbsp;            if (&quot;\\^$.|?*+()[]{}&quot;.contains(String.valueOf(delimiter))) {</b>
+<b class="fc">&nbsp;                escapedDelimiters.append(&quot;\\&quot;);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            escapedDelimiters.append(delimiter);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // Creazione di una regex per trovare i delimitatori
+<b class="fc">&nbsp;        String regex = &quot;[&quot; + String.valueOf(escapedDelimiters) + &quot;]&quot;;</b>
+&nbsp;
+&nbsp;        // Sostituzione dei delimitatori con &quot;-&quot; e rimozione di trattini consecutivi
+<b class="fc">&nbsp;        String kebabCase = input.replaceAll(regex, &quot;-&quot;)</b>
+<b class="fc">&nbsp;                .replaceAll(&quot;-{2,}&quot;, &quot;-&quot;)// Rimuove trattini consecutivi</b>
+<b class="fc">&nbsp;                .replaceAll(&quot;\\s+&quot;, &quot;&quot;); // Rimuove spazi aal&#39;interno della stringa</b>
+&nbsp;
+&nbsp;        // Controllo per input composto solo da delimitatori
+<b class="fc">&nbsp;        if (kebabCase.replaceAll(&quot;-&quot;, &quot;&quot;).isEmpty()) {</b>
+<b class="fc">&nbsp;            return input; // Restituisci la stringa originale se è composta solo da delimitatori</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // Rimuove eventuali trattini iniziali o finali
+<b class="fc">&nbsp;        kebabCase = kebabCase.replaceAll(&quot;(^-|-$)&quot;, &quot;&quot;);</b>
+&nbsp;
+&nbsp;        // Se specificato, convertire la stringa in minuscola
+<b class="fc">&nbsp;        if (toLowerCase) {</b>
+<b class="fc">&nbsp;            kebabCase = kebabCase.toLowerCase();</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return kebabCase;</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-10-31 10:25</div>
+</div>
+</body>
+</html>
